@@ -1,0 +1,15 @@
+body {
+  padding: 10px;
+}
+.vis-rolling-mode-btn {
+  z-index: 10;
+}
+div[data-tab] > .table-wrapper {
+  position: relative;
+}
+div[data-tab] > .table-wrapper > .timeline-chart {
+  margin: 20px 0;
+}
+.ui.modal > .content > .chart-wrapper {
+  position: relative;
+}

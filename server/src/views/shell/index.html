@@ -1,0 +1,59 @@
+{% extends "../common/base.html" %}
+{% block title %}
+hello
+{% endblock %}
+{% block css %}<link rel="stylesheet" href="/css/shell-index.css">{% endblock %}
+{% block body %}
+<div id="shell">
+    <div class="ui black inverted segment">
+        <!-- {% raw %}
+        <div class="ui error message message-part" v-if="tooManyLog && showLogWarning">
+            <i class="close icon" @click="hideWarning"></i>
+            <div class="header">
+                Too Many Logs, old log might be lost.
+            </div>
+        </div>
+        <div class="toolbar">
+            <a class="ui teal tag label device-name">{{device}}</a>
+            <button @click="changeScroll" v-class="{positive: autoscroll, negative: !autoscroll}">
+                {{autoscroll ? "Auto Scroll" : "Lock Scroll"}}
+            </button>
+            <div class="ui checkbox">
+                <input type="checkbox" name="public" v-model="autoscroll">
+                <label>Auto Scroll</label>
+            </div>
+        </div>
+        {% endraw %} -->
+        <div class="ui dimmer shell-dimmer">
+            <div class="ui indeterminate text large loader">Waiting Device...</div>
+        </div>
+        <div class="ui container fluid">
+            {% raw %}
+            <p v-for="line in formattedLog">{{line}}</p>
+            {% endraw %}
+        </div>
+        <div class="ui fluid icon input inverted">
+            <div class="ui icon dropdown button cmdlist" v-if="type=='local'">
+                <i class="list icon"></i>
+            </div>
+            <div class="ui icon button" v-if="type !== 'local'" @click="openLogFolder">
+                <i class="file text outline icon"></i>
+            </div>
+            <div class="ui icon button" @click.stop="changeScroll">
+                <i class="lock icon" v-if="!autoscroll"></i>
+                <i class="unlock icon" v-if="autoscroll"></i>
+            </div>
+            <!-- <select class="ui search dropdown cmdlist fluid" placeholder="Send text to device" @keydown.tab.prevent.stop @keydown.enter.prevent.stop="sendMessage"></select> -->
+            <input type="text" placeholder="Send text to device" v-model="sendInput" @keydown.tab.prevent.stop @keydown="onInput" @keydown.enter.prevent.stop="sendMessage">
+            <button class ="ui teal button right labeled icon" @click.stop="sendMessage">
+                Send
+                <i class="send icon"></i>
+            </button>
+            <!-- <a href="dingtalk://dingtalkclient/action/sendmsg?dingtalk_id=studiosupport">hello</a> -->
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+<script type="text/javascript" src="/js/shell.js"></script>
+{% endblock %}

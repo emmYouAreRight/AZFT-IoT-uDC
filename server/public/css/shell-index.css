@@ -1,0 +1,32 @@
+#shell > .segment {
+  padding-bottom: 60px;
+  height: 100vh;
+}
+#shell > .segment > div.container {
+  height: 100%;
+  overflow: auto;
+  z-index: 0;
+}
+#shell > .segment > div.container > p {
+  margin: 0px;
+  white-space: pre;
+  font-family: 'Consolas', 'Monaco', 'Lucida Console', monospace, sans-serif;
+}
+#shell > .segment > div.container::-webkit-scrollbar-thumb {
+  background-color: grey;
+}
+#shell > .segment > div.input {
+  position: absolute;
+  bottom: 10px;
+  left: 2px;
+  width: 100%;
+}
+#shell > .segment .menu {
+  height: 70vh;
+  overflow: auto;
+}
+#shell > .segment > .toolbar {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}

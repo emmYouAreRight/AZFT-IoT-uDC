@@ -1,0 +1,38 @@
+@import (less) "./common/base.less";
+table td {vertical-align: top;}
+header {
+    display: flex;
+    align-items: center;
+    >div {
+        margin-left: 1rem;
+        margin-bottom: 1rem;
+    }
+}
+form.main {
+    margin: @base-margin 0;
+    >table {
+        >thead>tr {
+            >th.sdk {width: 50%}
+            >th.version{width: 15%}
+            >th.tool-chain {width: 50%}
+            >th.delete {width: 70px}
+        }
+        // >thead>tr>th {
+        //     &:last-child {
+        //         width: 70px;
+        //     }
+        //     &:nth-child(2) {
+        //         width: 15%;
+        //     }
+        // }
+        >tbody td {
+            a.operation {font-size: 18px;}
+            >a.operation.minus {color: red;}
+            &:last-child {text-align: center;}
+            >.wrapper {
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+    }
+}

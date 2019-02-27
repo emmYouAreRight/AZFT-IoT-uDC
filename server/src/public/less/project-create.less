@@ -1,0 +1,43 @@
+@import (less) "./common/base.less";
+// header>h2 {text-align: center;}
+.main {
+    position: relative;
+    margin: 0 auto;
+    // border: red solid 1px;
+    >form {
+        >.field {
+            >.location-wrapper {
+                display: flex;
+                >div {
+                    &:first-child {
+                        flex: 1;
+                        margin-right: 10px;
+                    }
+                }
+            }
+            >.cards {
+                margin-top: @base-margin;
+                margin-bottom: @base-margin;
+                >a.card>.content>.description {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+            }
+            >.no-template {
+                height: 200px;
+                background: gray;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 18px;
+                margin: @base-margin 0;
+            }
+        }
+    }
+}
+div.sdk-path>.sdk-win {
+    width: 100%;
+    min-height: 350px;
+    border: none;
+}

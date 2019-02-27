@@ -1,0 +1,60 @@
+#mesh {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    > .graph {
+       width: 100%;
+       height: 100%;
+       flex: 1;
+    }
+    > .node-action {
+        position: fixed;
+    }
+    .program-progress {
+        position: fixed;
+        top: 40vh;
+        left: 10vw;
+        width: 80vw;
+    }
+    .info-card {
+        // position: fixed;
+        width: 400px;
+        // overflow: auto;
+        background: rgba(255,255,255,0.5);
+        >.content {
+            background: transparent;
+        }
+    }
+    > .status {
+        position: fixed;
+        width: 400px;
+        height: 200px;
+        overflow: auto;
+        bottom: 20px;
+        right: 230px;
+        background: rgba(255, 255, 255, 0.5);
+        border: 1px solid rgba(34, 36, 38, 0.15);
+        border-radius: 0.3;
+        padding: 1em;
+        margin: 1rem 0;
+        box-shadow: 0 1px 2px 0 rgba(34,36,38,.15);
+    }
+    > .list {
+        flex: none;
+        width: 270px;
+        height: 100%;
+        //margin-top: 5%;
+        overflow-y: auto;
+    }
+    > .buttons {
+        position: fixed;
+        left: 20px;
+        top: 20px;
+    }
+    > .last-update {
+        position: fixed;
+        left: 20px;
+        bottom: 20px;
+    }
+}

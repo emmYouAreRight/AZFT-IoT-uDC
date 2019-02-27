@@ -1,0 +1,42 @@
+body {
+  padding: 10px;
+}
+table td {
+  vertical-align: top;
+}
+header {
+  display: flex;
+  align-items: center;
+}
+header > div {
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+}
+form.main {
+  margin: 20px 0;
+}
+form.main > table > thead > tr > th.sdk {
+  width: 50%;
+}
+form.main > table > thead > tr > th.version {
+  width: 15%;
+}
+form.main > table > thead > tr > th.tool-chain {
+  width: 50%;
+}
+form.main > table > thead > tr > th.delete {
+  width: 70px;
+}
+form.main > table > tbody td a.operation {
+  font-size: 18px;
+}
+form.main > table > tbody td > a.operation.minus {
+  color: red;
+}
+form.main > table > tbody td:last-child {
+  text-align: center;
+}
+form.main > table > tbody td > .wrapper {
+  display: flex;
+  justify-content: space-between;
+}

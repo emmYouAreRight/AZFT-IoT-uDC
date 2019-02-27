@@ -1,0 +1,70 @@
+{% extends "../common/base.html" %}
+{% block title %}SDK path{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="/css/sdk-index.css">
+{% endblock %}
+{% block body %}
+{% raw %}
+<header>
+    <h2>SDK path setting</h2>
+    <div>
+        <div class="ui olive label">if you have not installed any SDK, you can go to download one to install.</div>
+        <!-- http://gitlab.alibaba-inc.com/yunos-studio/daily-release/raw/iot/iot-studio-0.0.1.vsix -->
+        <!-- <a class="ui tag teal label" href="javascript:void(0);">click here to download</a> -->
+    </div>
+</header>
+<form class="ui form main" action="javascript:void(0);" method="post">
+    <button type="button" class="small ui button primary" @click="onClickAdd"><i class="plus icon"></i>Add</button>
+    <table class="ui celled table">
+        <thead>
+            <tr>
+                <th class="sdk">SDK path</th>
+                <th class="version">Version</th>
+                <!-- <th class="tool-chain">Tool-chain path</th> -->
+                <th class="delete">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="(item, index) in sdkPaths">
+                <td>
+                    <div class="wrapper" v-show="!item.sdk.editable">
+                        <label>{{item.sdk.val}}</label>
+                        <a class="operation edit" href="javascript:void(0)" @click="onClickEdit($event, index, 'sdk')"><i class="edit icon"></i></a>
+                    </div>
+                    <div :class="['field', item.sdk.error ? 'error' : '']" v-show="item.sdk.editable">
+                        <input type="text" :placeholder="item.sdk.placeholder" :data-id="'sdk' + index" v-model="item.sdk.val" @blur="onSdkBlur(index)">
+                        <div class="ui pointing red basic label" v-show="item.sdk.error">{{item.sdk.error}}</div>
+                    </div>
+                </td>
+                <td>
+                    <div class="wrapper" v-show="!item.version.editable">
+                        <label>{{item.version.val}}</label>
+                        <a class="operation edit" href="javascript:void(0)" @click="onClickEdit($event, index, 'version')"><i class="edit icon"></i></a>
+                    </div>
+                    <div :class="['field', item.version.error ? 'error' : '']" v-show="item.version.editable">
+                        <input type="text" placeholder="v1.0.0" :data-id="'version' + index" v-model="item.version.val" @blur="onVersionBlur(index)">
+                        <div class="ui pointing red basic label" v-show="item.version.error">{{item.version.error}}</div>
+                    </div>
+                </td>
+                <!-- <td>
+                    <div class="wrapper" v-show="!item.toolChain.editable">
+                        <label>{{item.toolChain.val}}</label>
+                        <a class="operation edit" href="javascript:void(0)" @click="onClickEdit($event, index, 'toolChain')"><i class="edit icon"></i></a>
+                    </div>
+                    <div :class="['field', item.toolChain.error ? 'error' : '']" v-show="item.toolChain.editable">
+                        <input type="text" :placeholder="item.toolChain.placeholder" :data-id="'toolChain' + index" v-model="item.toolChain.val" @blur="onToolchainBlur(index)">
+                        <div class="ui pointing red basic label" v-show="item.toolChain.error">{{item.toolChain.error}}</div>
+                    </div>
+                </td> -->
+                <td>
+                    <a class="operation minus" href="javascript:void(0);" @click="onClickMinus(index)" v-show="sdkPaths.length > 1"><i class="minus circle icon"></i></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+{% endraw %}
+{% endblock %}
+{% block script %}
+<script type="text/javascript" src="/js/sdk-index.js"></script>
+{% endblock %}

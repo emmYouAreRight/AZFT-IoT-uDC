@@ -1,0 +1,52 @@
+{% extends "../common/base.html" %}
+{% block title %}
+hello
+{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="/css/tinylink-index.css">
+{% endblock %}
+{% block body %}
+<div id="tinylink">
+    <!-- <p class="operation" v-show="infoDiv">
+        {% raw %}
+            FileName:{{binName}} &nbsp;&nbsp;&nbsp;&nbsp; UUID:{{uuid}}
+        {% endraw %}
+    </p> -->
+    <!--div class="QP">
+            <p id="Ver">123</p>
+    </div-->
+    <input type="file" v-show="false" class="file-selector" v-on:change="onUploadFile">
+    <div class="buttons">
+        <button class="ui button" id="btn_select" @click="toggleFileSelect()">
+            Select Source Code File
+        </button>
+        <!-- <select class="ui dropdown menu" v-model="hardwarePlatform" v-on:change="changeDevBoard">
+            <option class="ui button" value="none">Choose Hardware Platform</option>
+            <option class="ui button" value="tinylink_raspi" title="树莓派+DHT11+Grove Light+Grove Soil Moisture">tinylink_raspi</option>
+            <option class="ui button" value="tinylink_arduino" title="Arduino Mega+ESP8266+Grove Light+DHT11+Grove Soil Moisture+Grove Chainable RGB LED">tinylink_arduino</option>
+        </select> -->
+        <button class="ui button" @click.stop="process">
+            Compile
+        </button>
+        <!-- <button class="ui button" v-show="downloadButton" @click="downloadExe()">
+            Download exe file
+        </button> -->
+    </div>
+    <div class="animation" v-show="animationDiv">
+        <img src="/css/themes/default/assets/images/loading.gif"/>Processing ...(About 15-60s)
+    </div>
+    <div class="information" v-show="informationDiv" v-bind:style="informationDivStyle">
+        <p v-show="informationDiv" v-html="informationContent"></p>
+        <p v-show="informationDiv" v-html="boardContent"></p>
+        <p v-show="informationDiv" v-html="configContent"></p>
+        <textarea style="background-color:dimgrey;color:white;" rows="20" cols="80" disabled="disabled" v-show="errorVerbose" v-html="errorVerboseContent"></textarea>
+    </div>
+    <div class="hardwareConfiguration" v-show="hardwareConfigurationDiv">
+        <p v-show="hardwareConfigurationDiv">Hardware Configuration</p>
+        <img v-bind:src="hardwareConnectionGraphSrc" width="800px" v-show="hardwareConfigurationDiv"/>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+<script type="text/javascript" src="/js/tinylink.js"></script>
+{% endblock %}

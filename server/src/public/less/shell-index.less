@@ -1,0 +1,39 @@
+#shell {
+    >.segment {
+        padding-bottom: 60px;
+        height: 100vh;
+        >div.container {
+            height: 100%;
+            overflow: auto;
+            z-index: 0;
+            >p {
+                margin: 0px;
+                white-space: pre;
+                font-family: 'Consolas', 'Monaco', 'Lucida Console', monospace, sans-serif;
+            }
+        }
+        >div.container::-webkit-scrollbar-thumb {
+            background-color: grey;
+        }
+        >div.input {
+            position: absolute;
+            bottom: 10px;
+            left: 2px;
+            width: 100%;
+        }
+        .menu {
+            height: 70vh;
+            overflow: auto;
+        }
+        >.toolbar {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+        // >.message-part {
+        //     position: fixed;
+        //     top: 0px;
+        //     left: 10px;
+        // }
+    }
+}

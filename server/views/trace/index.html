@@ -1,0 +1,81 @@
+{% extends "../common/base.html" %}
+{% block title %}trace{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="/css/trace-index.css">
+<link rel="stylesheet" href="/css/vis-timeline-graph2d.min.css">
+{% endblock %}
+{% block body %}
+{% raw %}
+<div class="ui top attached tabular menu">
+    <a class="item active" data-tab="tasks">系统Task统计信息</a>
+    <a class="item" data-tab="semaphore">系统信号量(semaphore)</a>
+</div>
+<!-- tasks start -->
+<div class="ui bottom attached tab segment active" data-tab="tasks">
+    <div class="button-wrapper">
+        <button class="ui primary button icon" type="button" name="button" @click="onClickRefresh"><i class="icon refresh"></i></button>
+    </div>
+    <div class="ui table-wrapper">
+        <div class="ui active dimmer" v-show="loading">
+            <div class="ui text loader">Loading</div>
+        </div>
+        <table class="ui celled striped table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>State</th>
+                    <th>Prio</th>
+                    <th>StackSize</th>
+                    <th>Freesize</th>
+                    <th>Runtime</th>
+                    <th>Candidate</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="task in tasks">
+                    <td><a href="javascript:void(0);" @click="onClickTask(task.name)">{{task.name}}</a></td>
+                    <td>{{task.state}}</td>
+                    <td>{{task.prio}}</td>
+                    <td>{{task.stackSize}}</td>
+                    <td>{{task.freeSize}}</td>
+                    <td>{{task.runtime}}</td>
+                    <td>{{task.candidate}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- tasks end -->
+
+<!-- semaphore start -->
+<div class="ui bottom attached tab segment" data-tab="semaphore">
+    <!-- <div class="button-wrapper">
+        <button class="ui primary button icon" type="button" name="button" @click="onClickRefresh"><i class="icon refresh"></i></button>
+    </div> -->
+    <div class="ui table-wrapper">
+        <div class="ui active dimmer" v-show="loading">
+            <div class="ui text loader">Loading</div>
+        </div>
+        <div class="timeline-chart"></div>
+    </div>
+</div>
+<!-- semaphore end -->
+
+<!-- modal -->
+<div class="ui modal">
+    <div class="header">{{title}}</div>
+    <div class="content">
+        <div class="ui chart-wrapper">
+            <div class="ui active dimmer" v-show="loading">
+                <div class="ui text loader">Loading</div>
+            </div>
+            <div class="timeline-chart"></div>
+        </div>
+    </div>
+    <div class="actions"><button type="button" name="button" class="ui cancel button">Close</button></div>
+</div>
+{% endraw %}
+{% endblock %}
+{% block script %}
+<script type="text/javascript" src="/js/trace-index.js"></script>
+{% endblock %}

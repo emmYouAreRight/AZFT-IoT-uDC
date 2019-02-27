@@ -1,0 +1,140 @@
+{% extends "../common/base.html" %}
+{% block title %}
+hello
+{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="/css/mesh-index.css">
+<link rel="stylesheet" href="/css/vis-network.min.css">
+{% endblock %}
+{% block body %}
+<div id="mesh">
+    <div class="ui dimmer mesh-dimmer">
+        <div class="ui indeterminate text large loader" v-show="noData">Fetching data</div>
+        <div class="ui indicating progress program-progress" v-show="programming">
+            {% raw %}
+            Programming {{binName}} at {{programAddress}}
+            {% endraw %}
+            <div class="bar">
+                <div class="progress"></div>
+            </div>
+        </div>
+    </div>
+    <div class="ui address modal">
+        <div class="ui right labeled input fluid">
+            <input type="text" placeholder="0x13200" v-model="programAddress" @keydown.enter.prevent.stop="enterAddress(uploadChip, binName, readerResult)" @keydown.esc.prevent.stop="terminateEnterAddress">
+            <a class="ui tag label" @click="enterAddress(uploadChip, binName, readerResult)">
+                Address
+            </a>
+        </div>
+    </div>
+    <input type="file" v-show="false" class="file-selector" v-on:change="onUploadFile">
+    <div class="graph">
+    </div>
+    <div class="ui vertical menu node-action compact" v-show="showMenu" v-bind:style="menuStyle" @click.stop="hideMenu">
+        <a class="item" @click="openShell()">
+            Shell
+        </a>
+        <a class="item" @click="updateSubscribe()">
+            Toggle Log
+        </a>
+        <a class="item" @click="toggleFileSelect()">
+            Program
+        </a>
+        <a class="item" @click="showEnterAddress(true)">
+            Program Last Build
+        </a>
+        <a class="item" @click="resetDevice()">
+            Reset
+        </a>
+        <a class="item" @click="startDebug()" v-show="currentDebuggingChip === null">
+            Start Debug
+        </a>
+        <a class="item" @click="stopDebug()" v-show="currentDebuggingChip === currentNode.chip">
+            Stop Debug
+        </a>
+    </div>
+    <!-- {% raw %}
+    <div class="ui card info-card" v-show="showInfo" v-bind:style="infoStyle">
+        <div class="content">
+            <div class="header">{{currentChip.macaddr}}</div>
+            <div class="meta">{{currentChip.model}}</div>
+            <div class="ui sub header"></div>
+            <div class="ui small">
+                state: {{currentChip.state}}
+            </div>
+            <div class="ui small">
+                chip: {{currentNode.chip}}
+            </div>
+            <div class="ui small">
+                channel: {{currentChip.channel}}
+            </div>
+        </div>
+    </div>
+    {% endraw %} -->
+    <!-- <div class="status">
+        {% raw %}
+        <div v-for="edge in edgeStatus">
+            <span class="ui green mini label" v-if='edge.type == "add"'>Connect</span>
+            <span class="ui red mini label" v-if='edge.type == "remove"'>Disconnect</span>
+            <a class="ui label" @click.stop="focus(edge.edge.from)">
+                <i class="microchip icon"></i>
+                {{edge.edge.fromLabel}}
+            </a>
+            <i class="long arrow right icon"></i>
+            <a class="ui label" @click.stop="focus(edge.edge.to)">
+                <i class="microchip icon"></i>
+                {{edge.edge.toLabel}}
+            </a>
+        </div>
+        {% endraw %}
+    </div> -->
+    <!-- <div class="ui relaxed divided list">
+        <div class="item" v-for="node in nodes" :value="node.id">
+            <div class="ui content left floated">
+                {% raw %}
+                <a class="header" @click="focus(node)">{{node.label}}</a>
+                <div class="description">{{node.chipShort}}</div>
+                {% endraw %}
+            </div>
+            <div class="ui right floated icon buttons">
+                <button class="ui button" @click.stop="updateSubscribe(node)" v-if="!subscribe[node.label]">
+                    <i class="icon terminal"></i>
+                </button>
+                <button class="ui button" @click.stop="updateSubscribe(node)" v-if="subscribe[node.label]">
+                    <i class="icon window close outline"></i>
+                </button>
+            </div>
+        </div>
+    </div> -->
+    <div class="buttons">
+        <button class="ui labeled icon button" @click.stop="external">
+            Open in Browser
+            <i class="icon external"></i>
+        </button>
+        <button class="ui labeled icon button" @click.stop="restore">
+            Restore
+            <i class="icon repeat"></i>
+        </button>
+        <!-- <button class="ui button" @click.stop="toggleIsolatedNode" v-show="hideIsolatedNode">
+            Show Isolated Node
+        </button>
+        <button class="ui button" @click.stop="toggleIsolatedNode" v-show="!hideIsolatedNode">
+            Hide Isolated Node
+        </button> -->
+    </div>
+    <!-- <div class="burn status" v-show="programming">
+        {% raw %}
+        <p>Burn status {{progress.type}} : {{progress.data}} </p>
+        {% endraw %}
+    </div> -->
+    <div class="last-update">
+        {% raw %}
+        <p>Last Update: {{lastUpdate ? lastUpdate.toLocaleString() : ""}} </p>
+        {% endraw %}
+    </div>
+    <div class="icon-place" style="display:none"></div>
+</div>
+{% endblock %}
+{% block script %}
+<script type="text/javascript" src="/js/mesh.js"></script>
+{% endblock %}

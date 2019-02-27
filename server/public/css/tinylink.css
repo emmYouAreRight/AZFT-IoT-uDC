@@ -1,0 +1,14 @@
+#tinylink {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+}
+#tinylink > .buttons {
+  position: fixed;
+  left: 20px;
+  top: 20px;
+}
+#tinylink > .animation {
+  background-color: grey;
+}

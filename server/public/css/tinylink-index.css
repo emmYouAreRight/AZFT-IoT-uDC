@@ -1,0 +1,45 @@
+#tinylink {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  /*> .QP{
+        position: fixed;
+        left: 20px;
+        top: 0px;
+    }*/
+}
+#tinylink > .operation {
+  position: fixed;
+  left: 20px;
+  top: 20px;
+}
+#tinylink > .file-selector {
+  position: fixed;
+  left: 20px;
+  top: 25px;
+}
+#tinylink > .buttons {
+  position: fixed;
+  left: 20px;
+  top: 40px;
+}
+#tinylink > .animation {
+  position: fixed;
+  background-color: dimgrey;
+  left: 20px;
+  top: 100px;
+}
+#tinylink > .information {
+  position: fixed;
+  left: 20px;
+  top: 100px;
+}
+#tinylink > .hardwareConfiguration {
+  position: fixed;
+  left: 20px;
+  top: 130px;
+  height: 300px;
+  overflow: yes;
+  overflow-y: auto;
+}

@@ -1,0 +1,101 @@
+{% extends "../common/base.html" %}
+{% block title %}
+Component Manager
+{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="/css/component.css">
+{% endblock %}
+{% block body %}
+<div id="component">
+    <div class="ui dimmer component-dimmer">
+        <div class="ui text large loader active" v-show="working !== false" style="position: fixed; top: 40vh;">
+            {% raw %} {{working}} {% endraw %}
+        </div>
+    </div>
+    <!-- <div style="width: 100%; text-align: center;font-size: 1.3em;padding-top: 10px">Component Manager</div>
+    {% raw %}
+    <div style="width: 100%; text-align: center;font-size: 1em;padding-top: 10px">{{location}}</div>
+    {% endraw %} -->
+    <div class="toolbar">
+        <button class="ui button" @click.stop="onRemote">
+            Add Remote Component
+        </button>
+        <div class="space"></div>
+        <div class="ui icon input" style="width: 200px">
+            <input type="text" placeholder="search" v-model="filterText" />
+            <i class="search icon"></i>
+        </div>
+    </div>
+    <div style="width: 100%">
+        <table class="ui inverted grey unstackable selectable compact table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Path</th>
+                    <!-- <th>Add</th>
+                        <th>Remove</th>
+                        <th>Not modify</th> -->
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="component in componentListSorted" style="height: 48px">
+                    {% raw %}
+                    <td>
+                        <span>{{component.name}}</span>
+                    </td>
+                    <td>
+                        <span>{{component.path}}</span>
+                    </td>
+                    <!-- <td><span>{{component.used ? 'Used' : 'Not Used'}}</span></td> -->
+                    <!-- <td>
+                            <div class="ui radio fitted checkbox" :class="{disabled: !component.addAble}">
+                                <input type="radio" :name="`action-${component.name}`" v-model="selection[component.name]" value="add" :disabled="!component.addAble">
+                                <label></label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="ui radio fitted checkbox" :class="{disabled: !component.removeAble}">
+                                <input type="radio" :name="`action-${component.name}`" v-model="selection[component.name]" value="remove" :disabled="!component.removeAble">
+                                <label></label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="ui radio fitted checkbox">
+                                <input type="radio" :name="`action-${component.name}`" v-model="selection[component.name]" value="keep">
+                                <label></label>
+                            </div>
+                        </td> -->
+                    <td>
+                        <div class="ui buttons">
+                            <button class="ui positive button" :class="{disabled: !component.addAble}" @click="onAdd(component)">Add</button>
+                            <!-- <div class="or"></div> -->
+                            <button class="ui negative button" :class="{disabled: !component.removeAble}" @click="onRemove(component)">Remove</button>
+                        </div>
+                    </td>
+                    {% endraw %}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="toolbar">
+        <div class="space"></div>
+    </div>
+    <div class="ui modal">
+        <div class="header">
+            Add remote component
+        </div>
+        <form class="ui form" style="margin: 20px">
+            <div class="field">
+                <label>Remote component URL</label>
+                <input type="text" placeholder="Enter github url">
+            </div>
+            <div class="actions">
+                <div class="ui button negative">Cancel</div>
+                <div class="ui button positive">Submit</div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %} {% block script %}
+<script type="text/javascript" src="/js/component.js"></script> {% endblock %}

@@ -1,0 +1,36 @@
+{% extends "../common/base.html" %}
+{% block title %}
+hello
+{% endblock %}
+{% block body %}
+<div id="image-footprint">
+    <table class="ui inverted grey unstackable compact table">
+        <thread>
+            <tr>
+                <th>Module</th>
+                <th>RAM</th>
+                <th>ROM</th>
+            </tr>
+        </thread>
+        <tbody>
+            <template v-for="report in fullReport">
+                <tr v-for="(line, index) in report">
+                    {% raw %}
+                    <td><span>{{line[0]}}</span></td>
+                    <td v-for="index in 2">
+                        <span>{{line[index].curr}}</span>
+                        <span v-if="line[index].delta == '/'" class="ui label"><i class="cube icon fitted"></i> NEW </span>
+                        <span v-if="line[index].delta > 0" class="ui label red"><!--<i class="arrow up icon fitted"></i>--> {{line[index].delta}}%</span>
+                        <span v-if="line[index].delta < 0" class="ui label green"><!--<i class="arrow down icon fitted"></i>--> {{line[index].delta}}%</span>
+                        <span v-if="line[index].delta == '-'" class="ui label black"><i class="remove icon fitted"></i> REMOVED </span>
+                    </td>
+                    {% endraw %}
+                </tr>
+            </template> 
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+{% block script %}
+<script type="text/javascript" src="/js/image-footprint.js"></script>
+{% endblock %}

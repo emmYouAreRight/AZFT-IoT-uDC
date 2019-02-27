@@ -1,0 +1,72 @@
+{% extends "../common/base.html" %}
+{% block title %}Create Project{% endblock %}
+{% block css %}<link rel="stylesheet" href="/css/project-create.css">{% endblock %}
+{% block body %}
+{% raw %}
+<header>
+    <h2>Create Project</h2>
+</header>
+<div class="main ui">
+    <form :class="['ui', 'form', loading ? 'loading' : '']" action="javascript:void(0);" method="post" @submit="onSubmit">
+        <div class="field">
+            <label>Select a template</label>
+            <div class="ui six doubling cards" v-show="templates.length">
+                <a v-for="item in templates" :class="['card', item.filePath===templateId ? 'red' : '']" :title="item.desc" @click="onClickItem(item.filePath)">
+                    <div class="content">
+                        <div class="header">{{item.name}}</div>
+                        <div class="description">{{item.desc}}</div>
+                    </div>
+                    <div class="extra content"><i :class="['icon', 'red', item.filePath===templateId ? 'check' : '']"></i></div>
+                </a>
+            </div>
+            <div class="no-template" v-show="!templates.length">
+                <h3>Can not find any template!</h3>
+            </div>
+        </div>
+
+        <!--  -->
+        <div class="inline field">
+            <label>SDK Path</label>
+            <!-- <input type="text" v-model="sdkPath" placeholder="c:\SDKPath" required="true"> -->
+            <select v-model="sdkPath" class="ui dropdown" required="true" @change="onChangeSdk">
+                <option v-for="item in sdkPaths" :value="item.sdk">{{item.version + ' - ' + item.sdk}}</option>
+            </select>
+        </div>
+        <div :class="['field', 'required', location.error ? 'error' : '']">
+            <label>Location</label>
+            <input name="location" type="text" v-model="location.val" placeholder="" @blur="onLocationBlur">
+            <div class="ui pointing red basic label" v-show="location.error">{{location.error}}</div>
+            <!-- <div class="location-wrapper">
+                <div><input type="text" value=""></div>
+                <div><button type="button" class="ui button">Browse</button></div>
+            </div> -->
+        </div>
+        <div class="inline field">
+            <label>Hardware Board</label>
+            <select v-model="hardwareBoard" class="ui dropdown">
+                <option v-for="item in boards" :value="item">{{item}}</option>
+            </select>
+        </div>
+        <button type="submit" class="ui primary button">Submit</button>
+    </form>
+</div>
+<br/>
+<!-- model dialog -->
+<div class="ui modal sdk-path">
+    <div class="header">You have not set SDK path in editor. please set a SDK path at least.</div>
+    <iframe class="content sdk-win" :src="url"></iframe>
+    <div class="actions"><button type="button" class="ui button" @click="onClose">Close</button></div>
+</div>
+<div class="ui small modal error-dialog">
+    <div class="header">{{title}}</div>
+    <div class="content"><p>{{content}}</p></div>
+    <div class="actions">
+        <button type="button" class="ui approve primary button" v-show="enableSubmitBtn">Continue</button>
+        <button type="button" class="ui cancel button">Close</button>
+    </div>
+</div>
+{% endraw %}
+{% endblock %}
+{% block script %}
+<script type="text/javascript" src="/js/project-create.js"></script>
+{% endblock %}

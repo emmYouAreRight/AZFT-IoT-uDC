@@ -1,0 +1,19 @@
+body {
+  padding: 10px;
+}
+#component {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+#component .toolbar {
+  margin: 10px 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+#component .toolbar .space {
+  flex: 1;
+}
