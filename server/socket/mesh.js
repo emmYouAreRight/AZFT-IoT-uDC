@@ -1,5 +1,5 @@
 'use strict';
-const vscode = require('vscode');
+// const vscode = require('vscode');
 const uDeviceCenter = require("../../src/yang-udevice-center/application/udevice-center").getInstance();
 
 module.exports = function(socket, io) {

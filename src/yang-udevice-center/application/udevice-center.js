@@ -1,9 +1,9 @@
 const uDeviceCenterFactory = require('../domain/udevice-center-factory');
-const DebugService = require('../domain/debug-service');
+// const DebugService = require('../domain/debug-service');
 const config = require('../../../lib/options-provider').getInstance();
 const fs = require('fs-extra');
 const opn = require('opn');
-const vscode = require('vscode');
+// const vscode = require('vscode');
 const path = require('path');
 
 let uDeviceCenterApp = null;

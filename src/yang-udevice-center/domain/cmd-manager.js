@@ -2,7 +2,7 @@ const events = require('events');
 const path = require('path');
 const TBframe = require('../infrastructure/tbframe-converter');
 const config = require('../../../lib/options-provider').getInstance();
-const vscode = require('vscode');
+// const vscode = require('vscode');
 const fs = require('fs');
 const net = require('net');
 

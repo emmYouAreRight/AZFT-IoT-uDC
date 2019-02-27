@@ -31,7 +31,7 @@
     "tslint": "^5.11.0",
     "typescript": "^2.6.1"
   },
-  "main": "./server/index.js",
+  "main": "./main.js",
   "scripts": {
     "start": "node ./server/index.js"
   }
