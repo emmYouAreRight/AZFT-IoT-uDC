@@ -1,5 +1,5 @@
 const cliTable = require('cli-table');
-const vscode = require('vscode');
+// const vscode = require('vscode');
 const childProcess = require('child_process');
 const OptionsProvider = require('../../lib/options-provider');
 const EventEmitter = require('events');
@@ -12,7 +12,7 @@ const os = require('os');
 const path = require('path');
 const fs = require('fs');
 const statusbar = require('../yang-statusbar/main');
-const AOSTasksProvider = require('../yang-task/main').getInstance(vscode.workspace.rootPath);
+// const AOSTasksProvider = require('../yang-task/main').getInstance(vscode.workspace.rootPath);
 let connectedDeviceList = [];
 
 module.exports = class SerialManager extends EventEmitter {

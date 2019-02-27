@@ -33,6 +33,6 @@
   },
   "main": "./main.js",
   "scripts": {
-    "start": "node ./server/index.js"
+    "start": "node main.js"
   }
 }

@@ -47,7 +47,8 @@ class UDeviceCenterApp {
     }
 
     openShell(chip, label) {
-        vscode.commands.executeCommand('alios-studio.shell', chip, config.accessServer, config.accessPort, label);
+        console.log(chip,label)
+        // vscode.commands.executeCommand('alios-studio.shell', chip, config.accessServer, config.accessPort, label);
     }
 
     preserveLogHeartbeat(device) {

@@ -1,4 +1,4 @@
-const vscode = require('vscode');
+// const vscode = require('vscode');
 const path = require('path');
 const fse = require('fs-extra');
 const OptionsProvider = require('../../lib/options-provider');

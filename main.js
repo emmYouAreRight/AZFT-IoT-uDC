@@ -6,7 +6,7 @@ const uDeviceCenter = require('./src/yang-udevice-center/application/udevice-cen
 // accessKey
 let res = ''
 // device model
-let model = ''
+let model = 'tinylink_platform_1'
 let uuid = ''
 
 let interfaces = require('os').networkInterfaces()
