@@ -1,0 +1,24 @@
+{
+    "version": 2,
+    "configurations": [
+        {
+            "name": "{% if platform === 'win32' %}Win32{% elif platform === 'darwin' %}Mac{% else %}Linux{% endif %}",
+            "includePath": [
+                "{{location}}/aos/utility",
+                "{{location}}/aos/include",
+                "${workspaceRoot}"
+            ],
+            "defines": [],
+            "intelliSenseMode": "clang-x64",
+            "browse": {
+                "path": [
+                    "{{location}}/aos/utility",
+                    "{{location}}/aos/include",
+                    "${workspaceRoot}"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            }
+        }
+    ]
+}
