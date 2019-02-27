@@ -84,9 +84,8 @@ class ServerAliOS {
         detect(10000, (err, port) => {
             err && console.log('fail to start server', err)
             // app.listen(port);
-            server.listen(port, 'localhost')
+            server.listen(port, '0.0.0.0')
             config.serverPort = port
-            console.log(`http://127.0.0.1:${port}`)
         })
     }
 
